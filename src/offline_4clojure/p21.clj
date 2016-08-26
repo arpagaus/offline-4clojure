@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [col n] (last (first (partition (inc n) col))))
 )
 
 (defn -main []
