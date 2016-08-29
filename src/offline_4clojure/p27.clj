@@ -7,7 +7,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  #(let [size (count %)
+       split (partition (unchecked-int (/ size 2)) (unchecked-int (/ (inc size) 2)) %)
+       a (first split)
+       b (reverse (last split))]
+   (= a b))
 )
 
 (defn -main []
