@@ -6,7 +6,13 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn flat [coll] 
+    (reduce (fn [result element]
+              (if (coll? element)
+                  (vec (concat result (flat element)))
+                  (conj result element)))
+     []
+     coll)) 
 )
 
 (defn -main []
