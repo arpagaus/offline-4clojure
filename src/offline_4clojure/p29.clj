@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [s] (apply str (filter #(<= (int \A) (int %) (int \Z)) s)))
 )
 
 (defn -main []
