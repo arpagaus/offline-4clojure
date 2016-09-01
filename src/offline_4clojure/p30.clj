@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [coll] (reduce (fn [agg x] (if (= x (last agg)) agg (conj agg x))) [] coll))
 )
 
 (defn -main []
