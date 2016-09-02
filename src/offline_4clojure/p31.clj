@@ -6,7 +6,15 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  #(reduce (fn [coll x] 
+             (let [last* (last coll)
+                   past (vec (butlast coll))]
+                  (if (= (first last*) x)
+                      (conj past (conj last* x))
+                      (conj coll (list x))))
+            )
+            []
+            %)
 )
 
 (defn -main []
