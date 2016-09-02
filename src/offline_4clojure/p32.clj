@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  #(map (fn [x] (list x x)) %)
 )
 
 (defn -main []
