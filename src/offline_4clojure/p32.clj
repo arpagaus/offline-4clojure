@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-  #(map (fn [x] (list x x)) %)
+  #(mapcat (fn [x] (list x x)) %)
 )
 
 (defn -main []
