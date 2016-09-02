@@ -6,7 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn f 
+    ([start end] (f start end []))
+    ([start end coll] (if (= start end) coll (f (inc start) end (conj coll start)))) 
+  )
 )
 
 (defn -main []
