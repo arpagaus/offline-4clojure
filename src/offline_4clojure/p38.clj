@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [x & xs] (reduce #(if (> %1 %2) %1 %2) x xs))
 )
 
 (defn -main []
