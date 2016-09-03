@@ -7,5 +7,6 @@
                  [clj-http "0.5.7"]
                  [cheshire "4.0.4"]
                  [org.clojure/math.combinatorics "0.0.3"]]
+  :plugins [[lein-cljfmt "0.5.3"]]
   :main  offline-4clojure.core
   )
