@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  #(if (= % 1) 1 (reduce (fn [x xs] (* x xs)) (range 1 (inc %))))
 )
 
 (defn -main []
