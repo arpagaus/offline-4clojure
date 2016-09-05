@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  #(keep-indexed (fn [index item] (if (= 0 (mod (inc index) %2)) nil item)) %1)
 )
 
 (defn -main []
