@@ -6,7 +6,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [x coll]
+    (let [size (count coll)]
+      (if (< x 0) (+ size (mod x size)) x)))
 )
 
 (defn -main []
