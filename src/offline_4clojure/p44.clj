@@ -7,8 +7,8 @@
 
 (def __
   (fn [x coll]
-    (let [size (count coll)]
-      (if (< x 0) (+ size (mod x size)) x)))
+    (let [n (mod x (count coll))]
+      (concat (drop n coll) (take n coll))))
 )
 
 (defn -main []
