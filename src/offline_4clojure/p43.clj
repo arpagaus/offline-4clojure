@@ -6,7 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [coll n]
+    (let [v (vec coll)]
+      (for [i (range n)] 
+        (map #(v %) (range i (count coll) n)))))
 )
 
 (defn -main []

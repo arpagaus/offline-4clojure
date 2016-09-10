@@ -6,7 +6,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [x coll]
+    (let [n (mod x (count coll))]
+      (concat (drop n coll) (take n coll))))
 )
 
 (defn -main []

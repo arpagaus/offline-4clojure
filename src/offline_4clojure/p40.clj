@@ -6,7 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn f 
+    ([x coll] (f x (rest coll) [(first coll)]))
+    ([x coll agg] (if (empty? coll) agg (f x (rest coll) (conj agg x (first coll)))))
+  )
 )
 
 (defn -main []
