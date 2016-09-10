@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [x coll] (conj [(take x coll)] (drop x coll)))
 )
 
 (defn -main []
