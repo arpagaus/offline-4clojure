@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn 
+    ([n coll agg] (if (< (count coll) n)
+                      agg
+                      (recur n (drop n coll) (conj agg (take n coll)))))
+    ([n coll] (__ n coll []))))
 
 (defn -main []
   (are [soln] soln
