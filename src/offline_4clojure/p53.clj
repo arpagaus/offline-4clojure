@@ -5,9 +5,17 @@
 (ns offline-4clojure.p53
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
+(def __ 
+  (fn [coll] 
+    (loop [[head & tail] coll
+           current []
+           longest []]
+          (if (nil? head)
+              (if (> (count longest) 1) longest [])
+              (let [ascending (or (empty? current) (= head (inc (last current))))
+                    ncurrent (if ascending (conj current head) [head])
+                    nlongest (if (> (count ncurrent) (count longest)) ncurrent longest)]
+                   (recur tail ncurrent nlongest))))))
 
 (defn -main []
   (are [soln] soln
