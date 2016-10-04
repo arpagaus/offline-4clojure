@@ -6,7 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [coll] 
+      (reduce #(if (some #{%2} %1) %1 (conj %1 %2))
+              []
+              coll))
 )
 
 (defn -main []
