@@ -6,14 +6,21 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn gb
+    ([f coll] (gb f coll {}))
+    ([f coll m]
+     (if (empty? coll) m
+         (let [head (first coll)
+               key (f head)
+               val (if (contains? m key) (get m key) [])]
+           (gb f (rest coll) (assoc m
+                                    key
+                                    (conj val head))))))))
 
 (defn -main []
-  (are [soln] soln
-(= (__ #(> % 5) [1 3 6 8]) {false [1 3], true [6 8]})
-(= (__ #(apply / %) [[1 2] [2 4] [4 6] [3 6]])
-   {1/2 [[1 2] [2 4] [3 6]], 2/3 [[4 6]]})
-(= (__ count [[1] [1 2] [3] [1 2 3] [2 3]])
-   {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})
-))
+      (are [soln] soln
+        (= (__ #(> % 5) [1 3 6 8]) {false [1 3], true [6 8]})
+        (= (__ #(apply / %) [[1 2] [2 4] [4 6] [3 6]])
+           {1/2 [[1 2] [2 4] [3 6]], 2/3 [[4 6]]})
+        (= (__ count [[1] [1 2] [3] [1 2 3] [2 3]])
+           {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})))
