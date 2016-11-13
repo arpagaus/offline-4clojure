@@ -5,13 +5,17 @@
 (ns offline-4clojure.p50
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
+;; TODO transform map into values set and also append t lists
+(def __ (fn [coll]
+          (vals (reduce
+           (fn [agg x]
+             (let [t (type x)
+                   l (or (get agg t) [])]
+               (assoc agg t (conj l x))))
+             {} coll))))
 
 (defn -main []
   (are [soln] soln
-(= (set (__ [1 :a 2 :b 3 :c])) #{[1 2 3] [:a :b :c]})
-(= (set (__ [:a "foo"  "bar" :b])) #{[:a :b] ["foo" "bar"]})
-(= (set (__ [[1 2] :a [3 4] 5 6 :b])) #{[[1 2] [3 4]] [:a :b] [5 6]})
-))
+    (= (set (__ [1 :a 2 :b 3 :c])) #{[1 2 3] [:a :b :c]})
+    (= (set (__ [:a "foo"  "bar" :b])) #{[:a :b] ["foo" "bar"]})
+    (= (set (__ [[1 2] :a [3 4] 5 6 :b])) #{[[1 2] [3 4]] [:a :b] [5 6]})))
