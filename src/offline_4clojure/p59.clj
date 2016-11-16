@@ -5,8 +5,10 @@
 (ns offline-4clojure.p59
   (:use clojure.test))
 
-(def __
-;; your solution here
+(defn __
+  ([f] f)
+  ([f g] (fn [& xs] [(apply f xs) (apply g xs)]))
+  ([f g & gs] (fn [& xs] (reduce #(conj %1 (apply %2 xs)) [] (list* f g gs))))
 )
 
 (defn -main []
