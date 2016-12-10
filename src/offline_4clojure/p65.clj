@@ -6,14 +6,21 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (try
+      (do (assoc coll :foo :bar) :map)
+      (catch Exception e
+        (try
+          (do (disj coll #{}) :set)
+          (catch Exception e
+            (try
+              (do (subvec coll 0) :vector)
+              (catch Exception e :list))))))))
 
 (defn -main []
   (are [soln] soln
-(= :map (__ {:a 1, :b 2}))
-(= :list (__ (range (rand-int 20))))
-(= :vector (__ [1 2 3 4 5 6]))
-(= :set (__ #{10 (rand-int 5)}))
-(= [:map :set :vector :list] (map __ [{} #{} [] ()]))
-))
+    (= :map (__ {:a 1, :b 2}))
+    (= :list (__ (range (rand-int 20))))
+    (= :vector (__ [1 2 3 4 5 6]))
+    (= :set (__ #{10 (rand-int 5)}))
+    (= [:map :set :vector :list] (map __ [{} #{} [] ()]))))
