@@ -7,12 +7,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [x] (take x (filter
+                   (fn [x] (not (some #(not (ratio? (/ x %1))) (range 2 x))))
+                   (range 2 1000)))))
 
 (defn -main []
   (are [soln] soln
-(= (__ 2) [2 3])
-(= (__ 5) [2 3 5 7 11])
-(= (last (__ 100)) 541)
-))
+    (= (__ 2) [2 3])
+    (= (__ 5) [2 3 5 7 11])
+    (= (last (__ 100)) 541)))
