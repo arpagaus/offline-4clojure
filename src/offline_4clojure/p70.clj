@@ -3,18 +3,18 @@
 ;; tags - sorting
 ;; restricted - 
 (ns offline-4clojure.p70
-  (:use clojure.test))
+  (:use clojure.test)
+  (:require [clojure.string :as str]))
 
 (def __
-;; your solution here
-)
+  (fn [s]
+    (sort #(compare (str/lower-case %1) (str/lower-case %2)) (str/split s #"[^a-zA-Z]"))))
 
-(defn -main []
+(def -main []
   (are [soln] soln
-(= (__  "Have a nice day.")
-   ["a" "day" "Have" "nice"])
-(= (__  "Clojure is a fun language!")
-   ["a" "Clojure" "fun" "is" "language"])
-(= (__  "Fools fall for foolish follies.")
-   ["fall" "follies" "foolish" "Fools" "for"])
-))
+    (= (__  "Have a nice day.")
+       ["a" "day" "Have" "nice"])
+    (= (__  "Clojure is a fun language!")
+       ["a" "Clojure" "fun" "is" "language"])
+    (= (__  "Fools fall for foolish follies.")
+       ["fall" "follies" "foolish" "Fools" "for"])))
