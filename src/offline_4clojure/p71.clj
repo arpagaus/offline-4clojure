@@ -6,12 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  last)
 
 (defn -main []
   (are [soln] soln
-(= (__ (sort (rest (reverse [2 5 4 1 3 6]))))
-   (-> [2 5 4 1 3 6] reverse rest sort __)
-   5)
-))
+    (= (__ (sort (rest (reverse [2 5 4 1 3 6]))))
+       (-> [2 5 4 1 3 6] reverse rest sort __)
+       5)))
