@@ -3,14 +3,17 @@
 ;; tags - 
 ;; restricted - 
 (ns offline-4clojure.p74
-  (:use clojure.test))
+  (:use clojure.test)
+  (:require [clojure.string :as str]))
 
 (def __
-;; your solution here
-)
+  (fn [l] (->> (str/split l #",")
+               (map bigint)
+               (filter #(let [s (Math/sqrt %)]
+                          (== (int s) s)))
+               (str/join ","))))
 
 (defn -main []
   (are [soln] soln
-(= (__ "4,5,6,7,8,9") "4,9")
-(= (__ "15,16,25,36,37") "16,25,36")
-))
+    (= (__ "4,5,6,7,8,9") "4,9")
+    (= (__ "15,16,25,36,37") "16,25,36")))
