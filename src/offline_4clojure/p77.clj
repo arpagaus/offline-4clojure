@@ -6,13 +6,23 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (let [anagram (fn [s1 s2]
+                    (= (sort s1) (sort s2)))]
+      (clojure.set/select
+       #(> (count %1) 1)
+       (reduce
+        (fn [x y]
+          (->> coll
+               (filter (partial anagram y))
+               set
+               (conj x)))
+        #{}
+        coll)))))
 
 (defn -main []
   (are [soln] soln
-(= (__ ["meat" "mat" "team" "mate" "eat"])
-   #{#{"meat" "team" "mate"}})
-(= (__ ["veer" "lake" "item" "kale" "mite" "ever"])
-   #{#{"veer" "ever"} #{"lake" "kale"} #{"mite" "item"}})
-))
+    (= (__ ["meat" "mat" "team" "mate" "eat"])
+       #{#{"meat" "team" "mate"}})
+    (= (__ ["veer" "lake" "item" "kale" "mite" "ever"])
+       #{#{"veer" "ever"} #{"lake" "kale"} #{"mite" "item"}})))
