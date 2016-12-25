@@ -6,13 +6,20 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [n]
+    (if (= n 1) 1
+        (let [gcd (fn gcd
+                    ([x y] (gcd x y (min x y)))
+                    ([x y d] (if (not (or (ratio? (/ x d)) (ratio? (/ y d))))
+                               d
+                               (recur x y (dec d)))))]
+          (->> (range 1 n)
+               (filter #(= 1 (gcd % n)))
+               (count))))))
 
 (defn -main []
   (are [soln] soln
-(= (__ 1) 1)
-(= (__ 10) (count '(1 3 7 9)) 4)
-(= (__ 40) 16)
-(= (__ 99) 60)
-))
+    (= (__ 1) 1)
+    (= (__ 10) (count '(1 3 7 9)) 4)
+    (= (__ 40) 16)
+    (= (__ 99) 60)))
