@@ -6,16 +6,19 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (letfn
+   [(foo [x y] #(bar (conj x y) y))
+    (bar [x y] (if (> (last x) 10)
+                 x
+                 #(foo x (+ 2 y))))]
+    (trampoline foo [] 1)))
 
 (defn -main []
   (are [soln] soln
-(= __
-   (letfn
-     [(foo [x y] #(bar (conj x y) y))
-      (bar [x y] (if (> (last x) 10)
-                   x
-                   #(foo x (+ 2 y))))]
-     (trampoline foo [] 1)))
-))
+    (= __
+       (letfn
+        [(foo [x y] #(bar (conj x y) y))
+         (bar [x y] (if (> (last x) 10)
+                      x
+                      #(foo x (+ 2 y))))]
+         (trampoline foo [] 1)))))
