@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clj-http "0.5.7"]
                  [cheshire "4.0.4"]
-                 [org.clojure/math.combinatorics "0.0.3"]]
+                 [org.clojure/math.combinatorics "0.0.3"]
+                 [proto-repl "0.3.1"]]
   :plugins [[lein-cljfmt "0.5.3"]]
-  :main  offline-4clojure.core
-  )
+  :main  offline-4clojure.core)

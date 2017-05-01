@@ -5,9 +5,7 @@
 (ns offline-4clojure.p83
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
+(def __ (fn [& args] (= 2 (count (set args)))))
 
 (defn -main []
   (are [soln] soln
