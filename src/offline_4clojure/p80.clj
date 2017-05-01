@@ -6,8 +6,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [x]
+	(let [numbers (->> (range 1 x) (filter #(not (ratio? (/ x %)))))]
+          (= x (apply + numbers)))))
 
 (defn -main []
   (are [soln] soln
